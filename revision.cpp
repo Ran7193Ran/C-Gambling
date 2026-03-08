@@ -8,7 +8,7 @@
 #include <thread>
 #include <vector>
 #include <windows.h>
-//test
+
 using namespace std;
 
 string suitSymbol(char suit);
