@@ -157,6 +157,10 @@ class Player {
             
         }
     }
+
+    void checkBalance(){
+        cout << "Current Balance: $"<<balance<<endl;
+    }
 };
 
 void coinFlip(int *win);
@@ -179,6 +183,7 @@ int main(){
         cout<<"(1. slotMachin)"<<endl;
         cout<<"(2. coinFLip)"<<endl;
         cout<<"(3. blackJack)"<<endl;
+        cout<<"(4. Check Ballance)"<<endl;
         cout<<"(0. Exit)"<<endl;
         cin>>ans;
 
@@ -218,7 +223,16 @@ int main(){
                 cin>> choice;
             }while(choice == 'y' || choice == 'Y');
             
-        }else if(ans==0){
+        }else if(ans==4){
+            do{
+                player.loadBalance();
+                player.checkBalance();
+
+                cout << "Exit?(y/n)";
+                cin>> choice;
+            }while(choice == 'n' || choice == 'N');
+
+        }else{
             break;
         }
     }   while(true);
