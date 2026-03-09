@@ -161,6 +161,11 @@ class Player {
     void checkBalance(){
         cout << "Current Balance: $"<<balance<<endl;
     }
+
+    void increaseBalance(){
+        cout<<"Enter new balance\n";
+        cin>>balance;
+    }
 };
 
 void coinFlip(int *win);
@@ -170,6 +175,7 @@ void blackJack(int *win);
 int main(){
     SetConsoleOutputCP(CP_UTF8);
     char choice;
+    string pass;
     int ans;
     int win = 0;
     int balance = 0;
@@ -198,7 +204,7 @@ int main(){
                 cout << "Play Again?(y/n): ";
                 cin >> choice;
             }while(choice == 'y'||choice =='Y');
-            
+                
         }else if(ans==2){
             do{
                 player.loadBalance();
@@ -210,7 +216,7 @@ int main(){
                 cout << "Play Again?(y/n): ";
                 cin >> choice;
             }while(choice == 'y'||choice =='Y');
-        
+            
         }else if(ans==3){
             do{
                 player.loadBalance();
@@ -222,15 +228,28 @@ int main(){
                 cout << "Play Again?(y/n)";
                 cin>> choice;
             }while(choice == 'y' || choice == 'Y');
-            
+                
         }else if(ans==4){
-            do{
-                player.loadBalance();
-                player.checkBalance();
+            player.loadBalance();
+            player.checkBalance();
 
-                cout << "Exit?(y/n)";
-                cin>> choice;
-            }while(choice == 'n' || choice == 'N');
+            cout << "Would You Like to Update Balance?(y/n)";
+            cin>> choice;
+
+            switch (choice)
+            {
+            case 'y':
+                cout<<"Enter Admin Password: ";
+                cin>>pass;
+                if(pass=="abc123"){
+                    player.increaseBalance();
+                    player.saveBalance();
+                }
+                break;
+            
+            default:
+                break;
+            }
 
         }else{
             break;
@@ -238,6 +257,7 @@ int main(){
     }   while(true);
 
     cout << "Thanks for playing!" << endl;
+    
     return 0;
 }
 
